@@ -6,12 +6,13 @@
 #define PROGETTOLABORATORIO_FINDPATH_H
 
 #include <memory>
+#include "stlastar.h"
 #include "Map.h"
+#include "fsa.h"
 
 class MapSearchNode
 {
 public:
-
 
     MapSearchNode() {
         x = 0;
@@ -19,13 +20,13 @@ public:
         map= new Map();
 
     }
+
     MapSearchNode( int px, int py ) {
         x=px;
         y=py;
         map= new Map();
 
     }
-
 
     float GoalDistanceEstimate( MapSearchNode &nodeGoal );
     bool IsGoal( MapSearchNode &nodeGoal );
@@ -34,8 +35,6 @@ public:
     bool IsSameState( MapSearchNode &rhs );
 
     void PrintNodeInfo();
-
-
 
     int getX() const {
         return x;
@@ -55,6 +54,10 @@ public:
 
     Map *getMap() const {
         return map;
+    }
+
+    void setMap(Map* map){
+        this->map=map;
     }
 
     int getMapHeight(); //restituisce l'altezza della mappa puntata da map

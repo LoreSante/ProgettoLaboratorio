@@ -8,7 +8,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "stlastar.h" // See header for copyright and usage information
+// See header for copyright and usage information
 #include "findpath.h"
 #include <iostream>
 #include <stdio.h>
