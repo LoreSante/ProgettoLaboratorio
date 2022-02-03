@@ -82,7 +82,7 @@ bool MapSearchNode::GetSuccessors( AStarSearch<MapSearchNode> *astarsearch, MapS
 
 	// push each possible move except allowing the search to go backwards
 
-	if( (GetMap( x-1, y ) < 9) 
+	if( (map->GetMap( x-1, y ) < 9)
 		&& !((parent_x == x-1) && (parent_y == y))
 	  ) 
 	{
@@ -90,7 +90,7 @@ bool MapSearchNode::GetSuccessors( AStarSearch<MapSearchNode> *astarsearch, MapS
 		astarsearch->AddSuccessor( NewNode );
 	}	
 
-	if( (GetMap( x, y-1 ) < 9) 
+	if( (map->GetMap( x, y-1 ) < 9)
 		&& !((parent_x == x) && (parent_y == y-1))
 	  ) 
 	{
@@ -98,7 +98,7 @@ bool MapSearchNode::GetSuccessors( AStarSearch<MapSearchNode> *astarsearch, MapS
 		astarsearch->AddSuccessor( NewNode );
 	}	
 
-	if( (GetMap( x+1, y ) < 9)
+	if( (map->GetMap( x+1, y ) < 9)
 		&& !((parent_x == x+1) && (parent_y == y))
 	  ) 
 	{
@@ -107,7 +107,7 @@ bool MapSearchNode::GetSuccessors( AStarSearch<MapSearchNode> *astarsearch, MapS
 	}	
 
 		
-	if( (GetMap( x, y+1 ) < 9) 
+	if( (map->GetMap( x, y+1 ) < 9)
 		&& !((parent_x == x) && (parent_y == y+1))
 		)
 	{
@@ -124,7 +124,20 @@ bool MapSearchNode::GetSuccessors( AStarSearch<MapSearchNode> *astarsearch, MapS
 
 float MapSearchNode::GetCost( MapSearchNode &successor )
 {
-	return (float) GetMap( x, y );
+	return (float) map->GetMap( x, y );
 
 }
+
+
+//funzioni per ottenere le dimensioni della mappa
+// FIXME valuta se effettivamente ha senso usare queste o direttamente quelle della Map
+
+int MapSearchNode::getMapHeight(){
+    return map->getMapHeight();
+}
+
+int MapSearchNode::getMapWidth(){
+    return map->getMapWidth();
+}
+
 

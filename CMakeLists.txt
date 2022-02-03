@@ -5,8 +5,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 add_subdirectory(test)
 
-set(SOURCE_FILES findpath.cpp stlastar.h fsa.h)
-add_executable(ProgettoLaboratorio main.cpp findpath.h)
+set(SOURCE_FILES findpath.cpp findpath.h stlastar.h fsa.h Map.cpp Map.h)
+add_executable(ProgettoLaboratorio main.cpp)
 add_library(core ${SOURCE_FILES})
 #target_link_libraries(ProgettoLaboratorio core) #questa istruzione viene eseguita dopo
 
