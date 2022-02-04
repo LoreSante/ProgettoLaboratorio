@@ -1,7 +1,14 @@
 #include <iostream>
+
 #include "fsa.h"
 #include "stlastar.h"
 #include "findpath.h"
+
+#include "SFML/Graphics.hpp"
+#include "SFML/Window.hpp"
+
+#include "MapRenderer.h"
+#include "Map.h"
 
 using namespace std;
 
@@ -9,8 +16,34 @@ using namespace std;
 
 int main( int argc, char *argv[] )
 {
+    //void renderMap(int length, int height,sf::Sprite &sprite, sf::Texture &textureMap);
+    Map *map=new Map();
+    MapRenderer *mapRenderer=new MapRenderer(map);
+
+    sf::RenderWindow window(sf::VideoMode(720, 720), "Mappa di gioco bruttissima");
+    sf::Sprite mapSprite;
+    sf::Texture mapTexture;
+    mapRenderer->renderMap(720,720, mapSprite,mapTexture);
+    mapSprite.setTexture(mapTexture);
 
 
+
+    while(window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            }
+        }
+        window.clear();
+        window.draw(mapSprite);
+        window.display();
+
+    }
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------//
     cout << "STL A* Search implementation\n(C)2001 Justin Heyes-Jones\n";
 
     // Our sample problem defines the world as a 2d array representing a terrain
