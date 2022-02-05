@@ -55,3 +55,15 @@ int Map::GetMap( int x, int y )
 
     return world_map[(y*width)+x];
 }
+
+void Map::notifyObserver() const {  //todo
+
+
+}
+
+void Map::registerObserver (Observer *o){  //todo
+
+}
+void Map::removeObserver (Observer * o){  //todo
+
+}

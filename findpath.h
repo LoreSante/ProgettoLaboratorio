@@ -29,7 +29,7 @@ public:
     }
 
     float GoalDistanceEstimate( MapSearchNode &nodeGoal );
-    bool IsGoal( MapSearchNode &nodeGoal );
+    bool IsGoal( MapSearchNode &nodeGoal );  //vera se il nodo è il goal
     bool GetSuccessors( AStarSearch<MapSearchNode> *astarsearch, MapSearchNode *parent_node );
     float GetCost( MapSearchNode &successor );
     bool IsSameState( MapSearchNode &rhs );

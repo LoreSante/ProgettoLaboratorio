@@ -4,9 +4,11 @@
 
 #ifndef PROGETTOLABORATORIO_MAP_H
 #define PROGETTOLABORATORIO_MAP_H
+#include "Subject.h"
+#include <list>
 
 
-class Map {
+class Map: public Subject {
 public:
 
     Map(int width, int height);
@@ -17,6 +19,10 @@ public:
     }
 
     int GetMap( int x, int y );
+
+    virtual void registerObserver (Observer *o);
+    virtual void removeObserver (Observer * o);
+    virtual void notifyObserver () const;
 
     int getMapWidth() {
         return width;
@@ -34,6 +40,7 @@ private:
     int *world_map;
     int width;
     int height;
+    std::list<Observer*> observers;
 
     // The world map
 

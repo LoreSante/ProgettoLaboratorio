@@ -5,6 +5,7 @@
 #include "../MapRenderer.h"
 
 
+
 TEST(MapRendererTest, ConstructorTest){
     Map* map=new Map;
     MapRenderer *renderer=new MapRenderer(map);
