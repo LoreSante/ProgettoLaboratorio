@@ -67,6 +67,8 @@ public:
 
 
 
+
+
 private:
     // the (x,y) positions of the node
     int x;

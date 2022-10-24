@@ -7,26 +7,29 @@
 
 #include "Map.h"
 #include <SFML/Graphics.hpp>
+#include "Observer.h"
 
-class MapRenderer {
+class MapRenderer: public Observer {
 public:
-    MapRenderer(Map *map):map(map){}
-
+    MapRenderer(Map* map):map(map){}
 
     void renderMap(int length, int height,sf::Sprite &sprite, sf::Texture &textureMap);
-    //length e height sono riferiti alledimensioni della texture. E' necessario passare i riferimenti di sprite e
+    //length e height sono riferiti alle dimensioni della texture. E' necessario passare i riferimenti di sprite e
     // texture per farli sopravvievere dopo l'uscita dal metodo
-
+    void renderMap(int length, int height);
 
     Map* getMap(){
         return map;
     }
 
+    void update();
+
 
 private:
     Map* map;
 
-
+    sf::Sprite mapSprite;
+    sf::Texture mapTexture;
 
 };
 

@@ -27,7 +27,6 @@ int main( int argc, char *argv[] )
     mapSprite.setTexture(mapTexture);
 
 
-
     while(window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {

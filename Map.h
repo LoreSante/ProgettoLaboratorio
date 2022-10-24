@@ -12,7 +12,7 @@ class Map: public Subject {
 public:
 
     Map(int width, int height);
-    Map();
+    Map(); //il costruttore di default costruisce la mappa sulla base di una matrice di default
 
     const int *getWorldMap() const {
         return world_map;

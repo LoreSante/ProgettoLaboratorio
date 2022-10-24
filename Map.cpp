@@ -7,7 +7,11 @@
 Map::Map(int width, int height) {
     this->width=width;
     this->height=height;
-    world_map=new int[width*height];  //TODO decidere come riempire la mappa, probabilmente sarà necessario implementare la creazione da immagine
+    world_map=new int[width*height];
+
+    // fixme: decidere come riempire la mappa, probabilmente sarà necessario implementare la creazione da immagine
+    // DEPRECATO - TROPPO COMPLESSO, TROVARE SOLUZIONE ALTERNATIVA
+
 }
 
 Map::Map(){
@@ -41,6 +45,7 @@ Map::Map(){
 
             };
 }
+
 
 int Map::GetMap( int x, int y )
 {
