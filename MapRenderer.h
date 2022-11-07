@@ -11,7 +11,7 @@
 
 class MapRenderer: public Observer {
 public:
-    MapRenderer(Map* map):map(map){}
+    MapRenderer(Map* map);
 
     void renderMap(int length, int height,sf::Sprite &sprite, sf::Texture &textureMap);
     //length e height sono riferiti alle dimensioni della texture. E' necessario passare i riferimenti di sprite e
@@ -23,6 +23,10 @@ public:
     }
 
     void update();
+
+    const sf::Sprite &getMapSprite() const {
+        return mapSprite;
+    }
 
 
 private:

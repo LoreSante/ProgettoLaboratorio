@@ -5,7 +5,7 @@
 #ifndef PROGETTOLABORATORIO_CHARACTERRENDERER_H
 #define PROGETTOLABORATORIO_CHARACTERRENDERER_H
 #include "Observer.h"
-#include "GameCharacter.h"
+//#include "GameCharacter.h"
 
 class CharacterRenderer: public Observer {
 
@@ -14,7 +14,7 @@ class CharacterRenderer: public Observer {
 
 
 private:
-    GameCharacter* character;
+    //GameCharacter* character;
 };
 
 

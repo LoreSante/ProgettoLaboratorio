@@ -9,6 +9,7 @@
 
 #include "MapRenderer.h"
 #include "Map.h"
+#include "GameCharacter.h"
 
 using namespace std;
 
@@ -20,12 +21,18 @@ int main( int argc, char *argv[] )
     Map *map=new Map();
     MapRenderer *mapRenderer=new MapRenderer(map);
 
+    GameCharacter* gameCharacter=new GameCharacter(0,0);
+    gameCharacter->moveTo(16,5);
+
     sf::RenderWindow window(sf::VideoMode(720, 720), "Mappa di gioco bruttissima");
     sf::Sprite mapSprite;
     sf::Texture mapTexture;
+
+    /*
     mapRenderer->renderMap(720,720, mapSprite,mapTexture);
     mapSprite.setTexture(mapTexture);
-
+    */
+    mapRenderer->renderMap(720,720);
 
     while(window.isOpen()) {
         sf::Event event;
@@ -35,7 +42,9 @@ int main( int argc, char *argv[] )
             }
         }
         window.clear();
-        window.draw(mapSprite);
+        // window.draw(mapSprite);
+
+        window.draw(mapRenderer->getMapSprite());
         window.display();
 
     }

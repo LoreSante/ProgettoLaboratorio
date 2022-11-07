@@ -4,6 +4,10 @@
 
 #include "MapRenderer.h"
 
+MapRenderer::MapRenderer(Map *map) {
+    this->map=map;
+}
+
 void MapRenderer::renderMap(int length, int height,sf::Sprite &sprite, sf::Texture &textureMap) {
     //sf::RenderWindow window(sf::VideoMode(length, height), "Mappa di gioco bruttissima");
     //sf::Texture textureMap;
@@ -51,8 +55,6 @@ void MapRenderer::renderMap(int length, int height) {
 
     mapTexture.create(length, height);
 
-
-
     sf::Image image;
     image.create(length, height, sf::Color(0, 0, 0));
 
@@ -78,8 +80,6 @@ void MapRenderer::renderMap(int length, int height) {
     mapTexture.update(image);
     mapTexture.setSmooth(true);
     mapSprite.setTexture(mapTexture);
-
-
 
 }
 
