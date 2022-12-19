@@ -89,8 +89,18 @@ void GameCharacter::moveTo(int x, int y) {
 }
 
 void GameCharacter::registerObserver (Observer* o){
-
-} //todo implementa
+        CharacterRenderer* characterRenderer;
+        characterRenderer=dynamic_cast<CharacterRenderer*> (o);
+        if(characterRenderer){
+            renderers.push_back(characterRenderer);
+        }
+        //todo Gestisci le eccezioni
+        /*
+         * else{
+         *  lancia eccezione
+         * }
+         */
+}
 
 void GameCharacter::removeObserver (Observer* o){
 
@@ -110,4 +120,8 @@ int GameCharacter::getY() const {
 void GameCharacter::setPosition(int x, int y) {
     this->x=x;
     this->y=y;
+}
+
+const list<CharacterRenderer *> &GameCharacter::getRenderers() const {
+    return renderers;
 }

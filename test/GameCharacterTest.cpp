@@ -31,3 +31,10 @@ TEST(GameCharacterTest, MoveToTest){
     ASSERT_EQ(0, gameCharacter->getY());
 
 }
+
+TEST(GameCharacterTest, registerObserver){
+    GameCharacter* gameCharacter= new GameCharacter();
+    CharacterRenderer* characterRenderer= new CharacterRenderer();
+    gameCharacter->registerObserver(characterRenderer);
+    ASSERT_EQ(characterRenderer, gameCharacter->getRenderers().back());
+}

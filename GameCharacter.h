@@ -7,6 +7,7 @@
 
 #include "Subject.h"
 #include "CharacterRenderer.h"
+#include <list>
 
 class GameCharacter: public Subject {
 public:
@@ -26,10 +27,15 @@ public:
 
     void setPosition(int x, int y);
 
+    const std::list<CharacterRenderer *> &getRenderers() const;
 
 private:
     int x;
     int y;
+
+    std::list<CharacterRenderer*> renderers;
+
+
 
 };
 

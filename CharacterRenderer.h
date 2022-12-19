@@ -4,17 +4,20 @@
 
 #ifndef PROGETTOLABORATORIO_CHARACTERRENDERER_H
 #define PROGETTOLABORATORIO_CHARACTERRENDERER_H
+
 #include "Observer.h"
-//#include "GameCharacter.h"
+
 
 class CharacterRenderer: public Observer {
-
+public:
+    CharacterRenderer();
+    //CharacterRenderer(GameCharacter*)
 
     void update(); //todo se serve, da implementare;
 
 
 private:
-    //GameCharacter* character;
+
 };
 
 

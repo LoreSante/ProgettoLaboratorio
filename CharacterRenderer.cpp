@@ -3,3 +3,11 @@
 //
 
 #include "CharacterRenderer.h"
+
+CharacterRenderer::CharacterRenderer() {
+
+}
+
+void CharacterRenderer::update() {
+
+}
