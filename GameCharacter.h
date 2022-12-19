@@ -18,8 +18,8 @@ public:
     void searchPathTo(int x,int y);
     void doSteps(int x, int y);
 
-    void registerObserver (Observer *o) override; //todo implementa
-    void removeObserver (Observer * o) override; //todo implementa
+    void registerObserver (Observer *o) override;
+    void removeObserver (Observer * o) override;
     void notifyObserver () const override; //todo implementa
 
     int getX() const;

@@ -94,7 +94,7 @@ void GameCharacter::registerObserver (Observer* o){
         if(characterRenderer){
             renderers.push_back(characterRenderer);
         }
-        //todo Gestisci le eccezioni
+        //todo Gestisci le eccezioni (se non è un characterRenderer lancia l'eccezione)
         /*
          * else{
          *  lancia eccezione
@@ -103,6 +103,17 @@ void GameCharacter::registerObserver (Observer* o){
 }
 
 void GameCharacter::removeObserver (Observer* o){
+    CharacterRenderer* characterRenderer;
+    characterRenderer=dynamic_cast<CharacterRenderer*> (o);
+    if(characterRenderer){
+        renderers.remove(characterRenderer);
+    }
+    //todo Gestisci le eccezioni (se non è un characterRenderer lancia l'eccezione)
+    /*
+     * else{
+     *  lancia eccezione
+     * }
+     */
 
 } //todo implementa
 

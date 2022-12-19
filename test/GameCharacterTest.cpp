@@ -32,9 +32,26 @@ TEST(GameCharacterTest, MoveToTest){
 
 }
 
-TEST(GameCharacterTest, registerObserver){
+TEST(GameCharacterTest, registerObserverTest){
     GameCharacter* gameCharacter= new GameCharacter();
     CharacterRenderer* characterRenderer= new CharacterRenderer();
     gameCharacter->registerObserver(characterRenderer);
     ASSERT_EQ(characterRenderer, gameCharacter->getRenderers().back());
+
+}
+
+TEST(GameCharacterTest, removeObserverTest){
+    GameCharacter* gameCharacter= new GameCharacter();
+
+    CharacterRenderer* characterRenderer1= new CharacterRenderer();
+    gameCharacter->registerObserver(characterRenderer1);
+
+    CharacterRenderer* characterRenderer2= new CharacterRenderer();
+    gameCharacter->registerObserver(characterRenderer2);
+
+    ASSERT_EQ(characterRenderer2, gameCharacter->getRenderers().back());
+
+    gameCharacter->removeObserver(characterRenderer2);
+    ASSERT_EQ(characterRenderer1,gameCharacter->getRenderers().back());
+
 }
