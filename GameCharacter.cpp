@@ -5,6 +5,8 @@
 #include "GameCharacter.h"
 #include "stlastar.h"
 #include "findpath.h"
+#include "CharacterRenderer.h"
+
 
 GameCharacter::GameCharacter(int x, int y) {
         this->x=x;
@@ -89,6 +91,9 @@ void GameCharacter::moveTo(int x, int y) {
 }
 
 void GameCharacter::registerObserver (Observer* o){
+    renderers.push_back(o);
+
+    /*
         CharacterRenderer* characterRenderer;
         characterRenderer=dynamic_cast<CharacterRenderer*> (o);
         if(characterRenderer){
@@ -100,9 +105,13 @@ void GameCharacter::registerObserver (Observer* o){
          *  lancia eccezione
          * }
          */
+
 }
 
 void GameCharacter::removeObserver (Observer* o){
+    renderers.remove(o);
+
+    /*
     CharacterRenderer* characterRenderer;
     characterRenderer=dynamic_cast<CharacterRenderer*> (o);
     if(characterRenderer){
@@ -114,12 +123,14 @@ void GameCharacter::removeObserver (Observer* o){
      *  lancia eccezione
      * }
      */
-
-} //todo implementa
+}
 
 void GameCharacter::notifyObserver() const{
+    for(auto it=renderers.begin(); it!=renderers.end(); it++){
+        (*it)->update();
+    }
 
-} //todo implementa
+} //todo verificane il funzionamento
 int GameCharacter::getX() const {
     return x;
 }
@@ -133,6 +144,6 @@ void GameCharacter::setPosition(int x, int y) {
     this->y=y;
 }
 
-const list<CharacterRenderer *> &GameCharacter::getRenderers() const {
+const list<Observer *> &GameCharacter::getRenderers() const {
     return renderers;
 }

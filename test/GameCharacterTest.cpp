@@ -4,6 +4,7 @@
 
 #include "gtest/gtest.h"
 #include "../GameCharacter.h"
+#include "../CharacterRenderer.h"
 
 TEST(GameCharacterTest, ConstructorTest){
     GameCharacter* gameCharacter=new GameCharacter();

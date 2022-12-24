@@ -10,6 +10,7 @@
 #include "MapRenderer.h"
 #include "Map.h"
 #include "GameCharacter.h"
+#include "CharacterRenderer.h"
 
 using namespace std;
 
@@ -23,6 +24,8 @@ int main( int argc, char *argv[] )
 
     GameCharacter* gameCharacter=new GameCharacter(0, 0);
     gameCharacter->moveTo(16,5);
+    CharacterRenderer* characterRenderer=new CharacterRenderer(gameCharacter);
+
 
     sf::RenderWindow window(sf::VideoMode(720, 720), "Mappa di gioco bruttissima");
     sf::Sprite mapSprite;
@@ -46,6 +49,7 @@ int main( int argc, char *argv[] )
         sf::Vector2i position=sf::Mouse::getPosition(window);
         cout<<"Mouse Position: ("<<position.x<<", "<<position.y<<")";
         window.draw(mapRenderer->getMapSprite());
+        window.draw(characterRenderer->renderCharacter());
         window.display();
 
 

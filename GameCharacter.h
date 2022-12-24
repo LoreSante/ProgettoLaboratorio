@@ -6,7 +6,7 @@
 #define PROGETTOLABORATORIO_GAMECHARACTER_H
 
 #include "Subject.h"
-#include "CharacterRenderer.h"
+//#include "CharacterRenderer.h"
 #include <list>
 
 class GameCharacter: public Subject {
@@ -20,20 +20,20 @@ public:
 
     void registerObserver (Observer *o) override;
     void removeObserver (Observer * o) override;
-    void notifyObserver () const override; //todo implementa
+    void notifyObserver () const override; //todo verificane il funzionamento
 
     int getX() const;
     int getY() const;
 
     void setPosition(int x, int y);
 
-    const std::list<CharacterRenderer *> &getRenderers() const;
+    const std::list<Observer *> &getRenderers() const;
 
 private:
     int x;
     int y;
 
-    std::list<CharacterRenderer*> renderers;
+    std::list<Observer*> renderers;
 
 
 
