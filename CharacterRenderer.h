@@ -18,6 +18,8 @@ public:
 
     void update(); //todo se serve, da implementare;
 
+    void updateSpritePosition(sf::Sprite characterSprite);
+
     sf::Sprite renderCharacter();
 
 private:
@@ -26,6 +28,7 @@ private:
 
     GameCharacter* gameCharacter;
 
+    const int windowSize=36;
 
 
 };

@@ -22,16 +22,26 @@ void CharacterRenderer::update() {
     this->y=gameCharacter->getY();
 }
 
+
+
 sf::Sprite CharacterRenderer::renderCharacter() {
     sf::Texture texture;
     //texture.create(36,36);
-    texture.loadFromFile("flappy_bird.png");
+    texture.loadFromFile("/home/lolle21/CLionProjects/ProgettoLaboratorio/Images/flappy_bird.png");
 
     sf::Sprite characterSprite;
     characterSprite.setTexture(texture);
+    characterSprite.setPosition(this->x*windowSize,this->y*windowSize);
+    characterSprite.scale(0.04,0.04);
+
 
     return characterSprite;
 
 
+
+}
+
+void CharacterRenderer::updateSpritePosition(sf::Sprite characterSprite) {
+    characterSprite.setPosition(this->x, this->y);
 
 }

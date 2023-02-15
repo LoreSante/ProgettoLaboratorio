@@ -23,7 +23,8 @@ int main( int argc, char *argv[] )
     MapRenderer *mapRenderer=new MapRenderer(map);
 
     GameCharacter* gameCharacter=new GameCharacter(0, 0);
-    gameCharacter->moveTo(16,5);
+    //gameCharacter->moveTo(16,5);
+
     CharacterRenderer* characterRenderer=new CharacterRenderer(gameCharacter);
 
 
@@ -46,10 +47,15 @@ int main( int argc, char *argv[] )
         }
         window.clear();
         //gameCharacter->moveTo(0,0);
+        //gameCharacter->moveTo(16,5);
+        gameCharacter->setStarAndGoal(16,5);
+        gameCharacter->searchPath();
+        gameCharacter->doStep();
         sf::Vector2i position=sf::Mouse::getPosition(window);
         cout<<"Mouse Position: ("<<position.x<<", "<<position.y<<")";
         window.draw(mapRenderer->getMapSprite());
         window.draw(characterRenderer->renderCharacter());
+
         window.display();
 
 

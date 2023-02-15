@@ -7,6 +7,8 @@
 
 #include "Subject.h"
 //#include "CharacterRenderer.h"
+#include "stlastar.h"
+#include "findpath.h"
 #include <list>
 
 class GameCharacter: public Subject {
@@ -15,8 +17,10 @@ public:
     GameCharacter(int x=0, int y=0); //todo crea il costruttore
 
     void moveTo(int x, int y);
-    void searchPathTo(int x,int y);
-    void doSteps(int x, int y);
+    void setStarAndGoal(int x, int y);
+    void searchPath();
+    void doStep();
+    bool isArrivedTo(int x, int y);
 
     void registerObserver (Observer *o) override;
     void removeObserver (Observer * o) override;
@@ -34,6 +38,10 @@ private:
     int y;
 
     std::list<Observer*> renderers;
+
+    AStarSearch<MapSearchNode>* gameCharacterAStarSearch;
+    unsigned int SearchState;
+    unsigned int arrivedToGoalState;
 
 
 
