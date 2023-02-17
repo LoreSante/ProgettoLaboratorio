@@ -18,7 +18,7 @@ public:
 
     void moveTo(int x, int y);
     void setStarAndGoal(int x, int y);
-    void searchPath();
+    bool searchPath();
     void doStep();
     bool isArrivedTo(int x, int y);
 
@@ -41,7 +41,7 @@ private:
 
     AStarSearch<MapSearchNode>* gameCharacterAStarSearch;
     unsigned int SearchState;
-    unsigned int arrivedToGoalState;
+   // unsigned int arrivedToGoalState;
 
 
 

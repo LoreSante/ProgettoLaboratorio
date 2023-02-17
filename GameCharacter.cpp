@@ -13,7 +13,7 @@ GameCharacter::GameCharacter(int x, int y) {
 
         gameCharacterAStarSearch=new AStarSearch<MapSearchNode>;
         SearchState=AStarSearch<MapSearchNode>::SEARCH_STATE_NOT_INITIALISED;
-        arrivedToGoalState=0;
+       // arrivedToGoalState=0;
 }
 void GameCharacter::setStarAndGoal(int x, int y) {
     MapSearchNode nodeStart;
@@ -26,40 +26,45 @@ void GameCharacter::setStarAndGoal(int x, int y) {
     nodeEnd.setY(y);
 
     // Set Start and goal states
-
         gameCharacterAStarSearch->SetStartAndGoalStates(nodeStart, nodeEnd);
-    //else
-        //gameCharacterAStarSearch->FreeSolutionNodes();
+
+
+        //gameCharacterAStarSearch->EnsureMemoryFreed();
+
+
 }
 
 bool GameCharacter::isArrivedTo(int x, int y) {
+    bool arrivedToGoalState;
     if(this->x == x && this->y == y){
-        this->arrivedToGoalState=true;
+        arrivedToGoalState=true;
+        gameCharacterAStarSearch->CancelSearch();
     }
     else{
-        this->arrivedToGoalState=false;
+        arrivedToGoalState=false;
     }
-    return this->arrivedToGoalState;
+    return arrivedToGoalState;
 }
 
-void GameCharacter::searchPath() {
-    if(!arrivedToGoalState){
+bool GameCharacter::searchPath() {
         do
         {
             SearchState = gameCharacterAStarSearch->SearchStep();
         }
         while( SearchState == AStarSearch<MapSearchNode>::SEARCH_STATE_SEARCHING );
+        bool state=false;
         if( SearchState == AStarSearch<MapSearchNode>::SEARCH_STATE_SUCCEEDED ) {
             cout << "Search found goal state\n";
+            state=true;
         }
         else if( SearchState == AStarSearch<MapSearchNode>::SEARCH_STATE_FAILED ){
             cout << "Search terminated. Did not find goal state\n";
         }
-    }
+        return state;
 }
 
 void GameCharacter::doStep(){
-    if(!arrivedToGoalState) {
+
         if (SearchState == AStarSearch<MapSearchNode>::SEARCH_STATE_SUCCEEDED) {
 
             MapSearchNode *node = gameCharacterAStarSearch->GetSolutionStart();
@@ -76,8 +81,9 @@ void GameCharacter::doStep(){
                 node->PrintNodeInfo();
 
             }
+
         }
-    }
+
 }
 
 

@@ -18,6 +18,7 @@ using namespace std;
 
 int main( int argc, char *argv[] )
 {
+    int const sizeDivisor=36;
     //void renderMap(int length, int height,sf::Sprite &sprite, sf::Texture &textureMap);
     Map *map=new Map();
     MapRenderer *mapRenderer=new MapRenderer(map);
@@ -38,6 +39,10 @@ int main( int argc, char *argv[] )
     */
     mapRenderer->renderMap(720,720);
 
+    bool mousePressedFlag=false;
+
+
+
     while(window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -48,11 +53,27 @@ int main( int argc, char *argv[] )
         window.clear();
         //gameCharacter->moveTo(0,0);
         //gameCharacter->moveTo(16,5);
-        gameCharacter->setStarAndGoal(16,5);
-        gameCharacter->searchPath();
-        gameCharacter->doStep();
-        sf::Vector2i position=sf::Mouse::getPosition(window);
-        cout<<"Mouse Position: ("<<position.x<<", "<<position.y<<")";
+
+        sf::Vector2i position = sf::Mouse::getPosition(window);
+        cout << "Mouse Position: (" << position.x << ", " << position.y << ")";
+
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+            mousePressedFlag = true;
+        }
+
+        if(mousePressedFlag) {
+            if (!(gameCharacter->isArrivedTo(position.x / sizeDivisor, position.y / sizeDivisor))) {
+                gameCharacter->setStarAndGoal(position.x / sizeDivisor, position.y / sizeDivisor);
+                if (gameCharacter->searchPath()) {
+                    gameCharacter->doStep();
+                }
+            }else {
+                mousePressedFlag = false;
+            }
+        }
+
+
+
         window.draw(mapRenderer->getMapSprite());
         window.draw(characterRenderer->renderCharacter());
 
