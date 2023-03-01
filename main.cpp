@@ -28,10 +28,11 @@ int main( int argc, char *argv[] )
 
     CharacterRenderer* characterRenderer=new CharacterRenderer(gameCharacter);
 
-
     sf::RenderWindow window(sf::VideoMode(720, 720), "Mappa di gioco bruttissima");
     sf::Sprite mapSprite;
     sf::Texture mapTexture;
+
+    sf::Vector2i position;
 
     /*
     mapRenderer->renderMap(720,720, mapSprite,mapTexture);
@@ -54,11 +55,10 @@ int main( int argc, char *argv[] )
         //gameCharacter->moveTo(0,0);
         //gameCharacter->moveTo(16,5);
 
-        sf::Vector2i position = sf::Mouse::getPosition(window);
-        cout << "Mouse Position: (" << position.x << ", " << position.y << ")";
-
         if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
             mousePressedFlag = true;
+            position= sf::Mouse::getPosition(window);
+            cout << "Mouse Position: (" << position.x << ", " << position.y << ")";
         }
 
         if(mousePressedFlag) {
@@ -72,12 +72,12 @@ int main( int argc, char *argv[] )
             }
         }
 
-
-
         window.draw(mapRenderer->getMapSprite());
         window.draw(characterRenderer->renderCharacter());
-
         window.display();
+
+
+
 
 
     }

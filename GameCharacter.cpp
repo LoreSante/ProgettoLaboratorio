@@ -15,6 +15,7 @@ GameCharacter::GameCharacter(int x, int y) {
         SearchState=AStarSearch<MapSearchNode>::SEARCH_STATE_NOT_INITIALISED;
        // arrivedToGoalState=0;
 }
+
 void GameCharacter::setStarAndGoal(int x, int y) {
     MapSearchNode nodeStart;
     nodeStart.setX(this->x);
@@ -28,10 +29,7 @@ void GameCharacter::setStarAndGoal(int x, int y) {
     // Set Start and goal states
         gameCharacterAStarSearch->SetStartAndGoalStates(nodeStart, nodeEnd);
 
-
         //gameCharacterAStarSearch->EnsureMemoryFreed();
-
-
 }
 
 bool GameCharacter::isArrivedTo(int x, int y) {
@@ -39,6 +37,7 @@ bool GameCharacter::isArrivedTo(int x, int y) {
     if(this->x == x && this->y == y){
         arrivedToGoalState=true;
         gameCharacterAStarSearch->CancelSearch();
+        gameCharacterAStarSearch->FreeSolutionNodes();
     }
     else{
         arrivedToGoalState=false;
@@ -56,9 +55,13 @@ bool GameCharacter::searchPath() {
         if( SearchState == AStarSearch<MapSearchNode>::SEARCH_STATE_SUCCEEDED ) {
             cout << "Search found goal state\n";
             state=true;
+            gameCharacterAStarSearch->FreeSolutionNodes();
+
         }
         else if( SearchState == AStarSearch<MapSearchNode>::SEARCH_STATE_FAILED ){
             cout << "Search terminated. Did not find goal state\n";
+
+
         }
         return state;
 }

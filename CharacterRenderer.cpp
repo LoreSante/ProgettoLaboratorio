@@ -14,6 +14,8 @@ CharacterRenderer::CharacterRenderer() {
 CharacterRenderer::CharacterRenderer(GameCharacter* gameCharacter) {
     gameCharacter->registerObserver(this);
     this->gameCharacter=gameCharacter;
+    this->x=gameCharacter->getX();
+    this->y=gameCharacter->getY();
 }
 
 
@@ -36,8 +38,6 @@ sf::Sprite CharacterRenderer::renderCharacter() {
 
 
     return characterSprite;
-
-
 
 }
 
