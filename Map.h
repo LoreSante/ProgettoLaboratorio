@@ -24,17 +24,16 @@ public:
     virtual void removeObserver (Observer * o);
     virtual void notifyObserver () const;
 
-    int getMapWidth() {
+    int getMapWidth() const {
         return width;
     }
 
-    int getMapHeight() {
+    int getMapHeight() const {
         return height;
     }
-/*  //vecchia versione dimensioni della mappa
-    static const int MAP_WIDTH = 20;
-    static const int MAP_HEIGHT = 20;
-*/
+
+
+
 private:
 
     int *world_map;

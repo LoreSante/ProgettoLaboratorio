@@ -61,7 +61,6 @@ bool GameCharacter::searchPath() {
         else if( SearchState == AStarSearch<MapSearchNode>::SEARCH_STATE_FAILED ){
             cout << "Search terminated. Did not find goal state\n";
 
-
         }
         return state;
 }
@@ -90,7 +89,7 @@ void GameCharacter::doStep(){
 }
 
 
-void GameCharacter::moveTo(int x, int y) {
+void GameCharacter::moveTo(int x, int y) { //deprecated
 
     AStarSearch<MapSearchNode> aStarSearch;
     unsigned int SearchCount = 0;
@@ -194,7 +193,7 @@ void GameCharacter::removeObserver (Observer* o){
     CharacterRenderer* characterRenderer;
     characterRenderer=dynamic_cast<CharacterRenderer*> (o);
     if(characterRenderer){
-        renderers.remove(characterRenderer);
+        renderers.remove(o);
     }
     //todo Gestisci le eccezioni (se non è un characterRenderer lancia l'eccezione)
     /*

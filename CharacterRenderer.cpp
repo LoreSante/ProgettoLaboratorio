@@ -11,13 +11,20 @@ CharacterRenderer::CharacterRenderer() {
 
 }
 
+CharacterRenderer::CharacterRenderer(GameCharacter* gameCharacter, int boxSize) {
+    gameCharacter->registerObserver(this);
+    this->gameCharacter=gameCharacter;
+    this->x=gameCharacter->getX();
+    this->y=gameCharacter->getY();
+    this->boxSize=boxSize;
+}
 CharacterRenderer::CharacterRenderer(GameCharacter* gameCharacter) {
     gameCharacter->registerObserver(this);
     this->gameCharacter=gameCharacter;
     this->x=gameCharacter->getX();
     this->y=gameCharacter->getY();
+    this->boxSize=36;
 }
-
 
 void CharacterRenderer::update() {
     this->x=gameCharacter->getX();
@@ -33,8 +40,8 @@ sf::Sprite CharacterRenderer::renderCharacter() {
 
     sf::Sprite characterSprite;
     characterSprite.setTexture(texture);
-    characterSprite.setPosition(this->x*windowSize,this->y*windowSize);
-    characterSprite.scale(0.04,0.04);
+    characterSprite.setPosition(this->x*boxSize,this->y*boxSize);
+    characterSprite.scale(boxSize*0.0011,boxSize*0.0011);
 
 
     return characterSprite;

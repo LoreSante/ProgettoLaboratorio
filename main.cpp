@@ -18,17 +18,20 @@ using namespace std;
 
 int main( int argc, char *argv[] )
 {
-    int const sizeDivisor=36;
+    //int const sizeDivisor=36;
+    int const sizeWindow = 360;
     //void renderMap(int length, int height,sf::Sprite &sprite, sf::Texture &textureMap);
     Map *map=new Map();
     MapRenderer *mapRenderer=new MapRenderer(map);
 
+    int sizeDivisor = sizeWindow/map->getMapWidth();
+
     GameCharacter* gameCharacter=new GameCharacter(0, 0);
     //gameCharacter->moveTo(16,5);
 
-    CharacterRenderer* characterRenderer=new CharacterRenderer(gameCharacter);
+    CharacterRenderer* characterRenderer=new CharacterRenderer(gameCharacter, sizeDivisor);
 
-    sf::RenderWindow window(sf::VideoMode(720, 720), "Mappa di gioco bruttissima");
+    sf::RenderWindow window(sf::VideoMode(sizeWindow, sizeWindow), "Mappa di gioco bruttissima");
     sf::Sprite mapSprite;
     sf::Texture mapTexture;
 
@@ -38,7 +41,7 @@ int main( int argc, char *argv[] )
     mapRenderer->renderMap(720,720, mapSprite,mapTexture);
     mapSprite.setTexture(mapTexture);
     */
-    mapRenderer->renderMap(720,720);
+    mapRenderer->renderMap(sizeWindow,sizeWindow);
 
     bool mousePressedFlag=false;
 

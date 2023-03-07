@@ -15,7 +15,7 @@ class CharacterRenderer: public Observer {
 public:
     CharacterRenderer();
     CharacterRenderer(GameCharacter* gameCharacter);
-
+    CharacterRenderer(GameCharacter* gameCharacter, int boxSize);
     void update(); //todo se serve, da implementare;
 
     void updateSpritePosition(sf::Sprite characterSprite);
@@ -28,7 +28,7 @@ private:
 
     GameCharacter* gameCharacter;
 
-    const int windowSize=36;
+    int boxSize;
 
 
 };
