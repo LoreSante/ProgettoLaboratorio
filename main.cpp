@@ -19,7 +19,7 @@ using namespace std;
 int main( int argc, char *argv[] )
 {
     //int const sizeDivisor=36;
-    int const sizeWindow = 360;
+    int const sizeWindow = 720;
     //void renderMap(int length, int height,sf::Sprite &sprite, sf::Texture &textureMap);
     Map *map=new Map();
     MapRenderer *mapRenderer=new MapRenderer(map);
@@ -31,7 +31,7 @@ int main( int argc, char *argv[] )
 
     CharacterRenderer* characterRenderer=new CharacterRenderer(gameCharacter, sizeDivisor);
 
-    sf::RenderWindow window(sf::VideoMode(sizeWindow, sizeWindow), "Mappa di gioco bruttissima");
+    sf::RenderWindow window(sf::VideoMode(sizeWindow, sizeWindow), "Mappa di gioco");
     sf::Sprite mapSprite;
     sf::Texture mapTexture;
 
@@ -58,7 +58,7 @@ int main( int argc, char *argv[] )
         //gameCharacter->moveTo(0,0);
         //gameCharacter->moveTo(16,5);
 
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             mousePressedFlag = true;
             position= sf::Mouse::getPosition(window);
             cout << "Mouse Position: (" << position.x << ", " << position.y << ")";
