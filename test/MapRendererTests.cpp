@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 #include "../MapRenderer.h"
 
-/*
+
 
 TEST(MapRendererTest, ConstructorTest){
     Map* map=new Map;
@@ -14,4 +14,3 @@ TEST(MapRendererTest, ConstructorTest){
     ASSERT_EQ(map->getWorldMap(), renderer->getMap()->getWorldMap());
 
 }
-*/
