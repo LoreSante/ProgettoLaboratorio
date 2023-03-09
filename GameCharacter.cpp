@@ -10,10 +10,8 @@
 GameCharacter::GameCharacter(int x, int y) {
         this->x=x;
         this->y=y;
-
         gameCharacterAStarSearch=new AStarSearch<MapSearchNode>;
         SearchState=AStarSearch<MapSearchNode>::SEARCH_STATE_NOT_INITIALISED;
-       // arrivedToGoalState=0;
 }
 
 void GameCharacter::setStarAndGoal(int x, int y) {
@@ -29,7 +27,6 @@ void GameCharacter::setStarAndGoal(int x, int y) {
     // Set Start and goal states
         gameCharacterAStarSearch->SetStartAndGoalStates(nodeStart, nodeEnd);
 
-        //gameCharacterAStarSearch->EnsureMemoryFreed();
 }
 
 bool GameCharacter::isArrivedTo(int x, int y) {
@@ -89,7 +86,7 @@ void GameCharacter::doStep(){
 }
 
 
-void GameCharacter::moveTo(int x, int y) { //deprecated
+void GameCharacter::moveTo(int x, int y) { //unused
 
     AStarSearch<MapSearchNode> aStarSearch;
     unsigned int SearchCount = 0;
@@ -120,7 +117,7 @@ void GameCharacter::moveTo(int x, int y) { //deprecated
         }
         while( SearchState == AStarSearch<MapSearchNode>::SEARCH_STATE_SEARCHING );
 
-        //RICERCA FINITA - INIZIO SPOSTAMENTO
+        //SEARCH END - START WALKING
 
         if( SearchState == AStarSearch<MapSearchNode>::SEARCH_STATE_SUCCEEDED ) {
             cout << "Search found goal state\n";
@@ -170,37 +167,10 @@ void GameCharacter::moveTo(int x, int y) { //deprecated
 
 void GameCharacter::registerObserver (Observer* o){
     renderers.push_back(o);
-
-    /*
-        CharacterRenderer* characterRenderer;
-        characterRenderer=dynamic_cast<CharacterRenderer*> (o);
-        if(characterRenderer){
-            renderers.push_back(characterRenderer);
-        }
-        //todo Gestisci le eccezioni (se non è un characterRenderer lancia l'eccezione)
-        /*
-         * else{
-         *  lancia eccezione
-         * }
-         */
-
 }
 
 void GameCharacter::removeObserver (Observer* o){
     renderers.remove(o);
-
-    /*
-    CharacterRenderer* characterRenderer;
-    characterRenderer=dynamic_cast<CharacterRenderer*> (o);
-    if(characterRenderer){
-        renderers.remove(o);
-    }
-    //todo Gestisci le eccezioni (se non è un characterRenderer lancia l'eccezione)
-    /*
-     * else{
-     *  lancia eccezione
-     * }
-     */
 }
 
 void GameCharacter::notifyObserver() const{
@@ -208,7 +178,7 @@ void GameCharacter::notifyObserver() const{
         (*it)->update();
     }
 
-} //todo verificane il funzionamento
+}
 int GameCharacter::getX() const {
     return x;
 }

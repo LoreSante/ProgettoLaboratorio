@@ -16,7 +16,7 @@ public:
     CharacterRenderer();
     CharacterRenderer(GameCharacter* gameCharacter);
     CharacterRenderer(GameCharacter* gameCharacter, int boxSize);
-    void update(); //todo se serve, da implementare;
+    void update();
 
     void updateSpritePosition(sf::Sprite characterSprite);
 

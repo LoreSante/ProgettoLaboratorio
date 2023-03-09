@@ -6,7 +6,6 @@
 #define PROGETTOLABORATORIO_GAMECHARACTER_H
 
 #include "Subject.h"
-//#include "CharacterRenderer.h"
 #include "stlastar.h"
 #include "findpath.h"
 #include <list>
@@ -14,7 +13,7 @@
 class GameCharacter: public Subject {
 public:
 
-    GameCharacter(int x=0, int y=0); //todo crea il costruttore
+    GameCharacter(int x=0, int y=0);
 
     void moveTo(int x, int y);
     void setStarAndGoal(int x, int y);
@@ -24,7 +23,7 @@ public:
 
     void registerObserver (Observer *o) override;
     void removeObserver (Observer * o) override;
-    void notifyObserver () const override; //todo verificane il funzionamento
+    void notifyObserver () const override;
 
     int getX() const;
     int getY() const;
@@ -41,7 +40,6 @@ private:
 
     AStarSearch<MapSearchNode>* gameCharacterAStarSearch;
     unsigned int SearchState;
-   // unsigned int arrivedToGoalState;
 
 
 

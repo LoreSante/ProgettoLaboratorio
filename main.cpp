@@ -1,9 +1,5 @@
 #include <iostream>
 
-#include "fsa.h"
-#include "stlastar.h"
-#include "findpath.h"
-
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
 
@@ -14,20 +10,17 @@
 
 using namespace std;
 
-
-
 int main( int argc, char *argv[] )
 {
-    //int const sizeDivisor=36;
     int const sizeWindow = 720;
-    //void renderMap(int length, int height,sf::Sprite &sprite, sf::Texture &textureMap);
+
     Map *map=new Map();
+
     MapRenderer *mapRenderer=new MapRenderer(map);
 
     int sizeDivisor = sizeWindow/map->getMapWidth();
 
     GameCharacter* gameCharacter=new GameCharacter(0, 0);
-    //gameCharacter->moveTo(16,5);
 
     CharacterRenderer* characterRenderer=new CharacterRenderer(gameCharacter, sizeDivisor);
 
@@ -37,15 +30,9 @@ int main( int argc, char *argv[] )
 
     sf::Vector2i position;
 
-    /*
-    mapRenderer->renderMap(720,720, mapSprite,mapTexture);
-    mapSprite.setTexture(mapTexture);
-    */
     mapRenderer->renderMap(sizeWindow,sizeWindow);
 
     bool mousePressedFlag=false;
-
-
 
     while(window.isOpen()) {
         sf::Event event;
@@ -55,8 +42,6 @@ int main( int argc, char *argv[] )
             }
         }
         window.clear();
-        //gameCharacter->moveTo(0,0);
-        //gameCharacter->moveTo(16,5);
 
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             mousePressedFlag = true;
@@ -78,10 +63,6 @@ int main( int argc, char *argv[] )
         window.draw(mapRenderer->getMapSprite());
         window.draw(characterRenderer->renderCharacter());
         window.display();
-
-
-
-
 
     }
 

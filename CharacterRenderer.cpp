@@ -4,7 +4,6 @@
 
 #include "CharacterRenderer.h"
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 
 
 CharacterRenderer::CharacterRenderer() {
@@ -35,7 +34,7 @@ void CharacterRenderer::update() {
 
 sf::Sprite CharacterRenderer::renderCharacter() {
     sf::Texture texture;
-    //texture.create(36,36);
+
     texture.loadFromFile("/home/lolle21/CLionProjects/ProgettoLaboratorio/Images/flappy_bird.png");
 
     sf::Sprite characterSprite;

@@ -4,15 +4,6 @@
 
 #include "Map.h"
 
-Map::Map(int width, int height) {
-    this->width=width;
-    this->height=height;
-    world_map=new int[width*height];
-
-    // fixme: decidere come riempire la mappa, probabilmente sarà necessario implementare la creazione da immagine
-    // DEPRECATO - TROPPO COMPLESSO, TROVARE SOLUZIONE ALTERNATIVA
-
-}
 
 Map::Map(){
     width=20;
@@ -61,14 +52,15 @@ int Map::GetMap( int x, int y )
     return world_map[(y*width)+x];
 }
 
-void Map::notifyObserver() const {  //todo
-
-
+void Map::notifyObserver() const {
+    for(auto it=observers.begin(); it!=observers.end(); it++){
+        (*it)->update();
+    }
 }
 
-void Map::registerObserver (Observer *o){  //todo
-
+void Map::registerObserver (Observer *o){
+    observers.push_back(o);
 }
-void Map::removeObserver (Observer * o){  //todo
-
+void Map::removeObserver (Observer * o){
+    observers.remove(o);
 }

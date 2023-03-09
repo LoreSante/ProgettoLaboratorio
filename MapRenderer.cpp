@@ -9,8 +9,6 @@ MapRenderer::MapRenderer(Map *map) {
 }
 
 void MapRenderer::renderMap(int length, int height,sf::Sprite &sprite, sf::Texture &textureMap) {
-    //sf::RenderWindow window(sf::VideoMode(length, height), "Mappa di gioco bruttissima");
-    //sf::Texture textureMap;
 
     textureMap.create(length, height);
 
@@ -50,7 +48,7 @@ void MapRenderer::renderMap(int length, int height,sf::Sprite &sprite, sf::Textu
 }
 
 void MapRenderer::renderMap(int length, int height) {
-    //sf::RenderWindow window(sf::VideoMode(length, height), "Mappa di gioco bruttissima");
+    //sf::RenderWindow window(sf::VideoMode(length, height), "Mappa di gioco");
     //sf::Texture textureMap;
 
     mapTexture.create(length, height);
@@ -84,5 +82,7 @@ void MapRenderer::renderMap(int length, int height) {
 }
 
 void MapRenderer::update(){
-    //todo implementa
+    int width=map->getMapWidth();
+    int height=map->getMapHeight();
+    this->renderMap(width, height);
 }

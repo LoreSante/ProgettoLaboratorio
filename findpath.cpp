@@ -130,7 +130,6 @@ float MapSearchNode::GetCost( MapSearchNode &successor )
 
 
 //funzioni per ottenere le dimensioni della mappa
-// FIXME valuta se effettivamente ha senso usare queste o direttamente quelle della Map
 
 int MapSearchNode::getMapHeight(){
     return map->getMapHeight();
