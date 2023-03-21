@@ -9,7 +9,7 @@ Map::Map(){
     width=20;
     height=20;
    // world_map=new int[width*height];
-    world_map=new int[ width * height ]
+    int world_map_array[]=
             {
 
 // 0001020304050607080910111213141516171819
@@ -35,6 +35,8 @@ Map::Map(){
                     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,   // 19
 
             };
+
+    world_map.assign(world_map_array, world_map_array+width*height);
 }
 
 
@@ -63,4 +65,8 @@ void Map::registerObserver (Observer *o){
 }
 void Map::removeObserver (Observer * o){
     observers.remove(o);
+}
+
+int Map::getValueOfSlot(int i, int j){
+    return world_map[i + j * (this->getMapWidth())];
 }

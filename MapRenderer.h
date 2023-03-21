@@ -13,7 +13,7 @@ class MapRenderer: public Observer {
 public:
     MapRenderer(Map* map);
 
-    void renderMap(int length, int height,sf::Sprite &sprite, sf::Texture &textureMap); //unused
+    //void renderMap(int length, int height,sf::Sprite &sprite, sf::Texture &textureMap); //unused
     //length e height sono riferiti alle dimensioni della texture. E' necessario passare i riferimenti di sprite e
     // texture per farli sopravvievere dopo l'uscita dal metodo
     void renderMap(int length, int height);
@@ -31,9 +31,20 @@ public:
 
 private:
     Map* map;
-
     sf::Sprite mapSprite;
     sf::Texture mapTexture;
+
+    enum
+    {
+        plain=1,
+        lowHill,
+        mediumHill,
+        highHill,
+        lowMountain,
+        mediumMountain,
+        highMountain,
+        unpassableWall=9,
+    };
 
 };
 

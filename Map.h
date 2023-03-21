@@ -6,6 +6,7 @@
 #define PROGETTOLABORATORIO_MAP_H
 #include "Subject.h"
 #include <list>
+#include<vector>
 
 
 class Map: public Subject {
@@ -13,15 +14,14 @@ public:
 
     Map(); //il costruttore di default costruisce la mappa sulla base di una matrice di default
 
-    const int *getWorldMap() const {
-        return world_map;
-    }
+    // TODO creare metdo per accedere al vettore
+    int getValueOfSlot(int i, int j);
 
     int GetMap( int x, int y );
 
-    virtual void registerObserver (Observer *o);
-    virtual void removeObserver (Observer * o);
-    virtual void notifyObserver () const;
+    void registerObserver (Observer *o) override;
+    void removeObserver (Observer * o) override;
+    void notifyObserver () const override;
 
     int getMapWidth() const {
         return width;
@@ -31,11 +31,14 @@ public:
         return height;
     }
 
-
+//INCAPSULARE MEGLIO MAPPA CON UN VECTOR
 
 private:
 
-    int *world_map;
+
+
+    //int *world_map;
+    std::vector<int> world_map;
     int width;
     int height;
     std::list<Observer*> observers;

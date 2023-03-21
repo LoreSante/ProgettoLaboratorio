@@ -29,3 +29,5 @@ TEST_F(MapSearchNodeTest, GoalDistanceEstimateTest) {
 
 }
 
+//inserire test con mappa piu complessa
+//inserire test con percorso chiuso
