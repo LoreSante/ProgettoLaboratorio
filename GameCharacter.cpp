@@ -4,9 +4,6 @@
 
 #include "GameCharacter.h"
 
-#include "CharacterRenderer.h"
-
-
 GameCharacter::GameCharacter(int x, int y) {
         this->x=x;
         this->y=y;

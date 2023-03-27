@@ -35,9 +35,7 @@ public:
 private:
     int x;
     int y;
-
     std::list<Observer*> renderers;
-
     AStarSearch<MapSearchNode>* gameCharacterAStarSearch;
     unsigned int SearchState;
 

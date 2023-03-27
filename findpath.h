@@ -13,6 +13,7 @@
 class MapSearchNode
 {
 public:
+//TODO CANCELLARE COSTRUTTOR SUPERFLUI
 
     MapSearchNode() {
         x = 0;
@@ -26,6 +27,12 @@ public:
         y=py;
         map= new Map();
 
+    }
+
+    MapSearchNode(Map* map) {
+        x=0;
+        y=0;
+        this->map=map;
     }
 
     float GoalDistanceEstimate( MapSearchNode &nodeGoal );
@@ -63,19 +70,10 @@ public:
     int getMapHeight(); //restituisce l'altezza della mappa puntata da map
     int getMapWidth(); //restitusce la larghezza della mappa puntata da map
 
-
-
-
-
-
-
 private:
     // the (x,y) positions of the node
     int x;
     int y;
     Map* map;
-
-
-
 };
 #endif //PROGETTOLABORATORIO_FINDPATH_H
