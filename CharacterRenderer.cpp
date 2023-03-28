@@ -6,23 +6,12 @@
 #include <SFML/Graphics.hpp>
 
 
-CharacterRenderer::CharacterRenderer() {
-
-}
-
 CharacterRenderer::CharacterRenderer(GameCharacter* gameCharacter, int boxSize) {
     gameCharacter->registerObserver(this);
     this->gameCharacter=gameCharacter;
     this->x=gameCharacter->getX();
     this->y=gameCharacter->getY();
     this->boxSize=boxSize;
-}
-CharacterRenderer::CharacterRenderer(GameCharacter* gameCharacter) {
-    gameCharacter->registerObserver(this);
-    this->gameCharacter=gameCharacter;
-    this->x=gameCharacter->getX();
-    this->y=gameCharacter->getY();
-    this->boxSize=36;
 }
 
 void CharacterRenderer::update() {

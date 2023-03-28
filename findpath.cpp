@@ -75,8 +75,10 @@ bool MapSearchNode::GetSuccessors( AStarSearch<MapSearchNode> *astarsearch, MapS
 	{
 		parent_x = parent_node->x;
 		parent_y = parent_node->y;
+        map=parent_node->getMap(); //eredita anche la mappa
 	}
 	
+
 
 	MapSearchNode NewNode;
 

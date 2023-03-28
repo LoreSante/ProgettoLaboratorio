@@ -17,7 +17,7 @@ public:
 
     int getValueOfSlot(int i, int j);
 
-    int GetMap( int x, int y ); //utile in fase di test
+    int GetMap( int x, int y ); //utile nei test
 
     void registerObserver (Observer *o) override;
     void removeObserver (Observer * o) override;

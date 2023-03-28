@@ -13,8 +13,8 @@
 
 class CharacterRenderer: public Observer {
 public:
-    CharacterRenderer();
-    CharacterRenderer(GameCharacter* gameCharacter);
+    CharacterRenderer(){}; //serve in fase di test
+
     CharacterRenderer(GameCharacter* gameCharacter, int boxSize);
     void update();
 

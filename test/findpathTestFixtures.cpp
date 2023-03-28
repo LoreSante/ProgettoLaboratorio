@@ -13,10 +13,11 @@ protected:
         msn.setY(0);
         msn.setMap(new Map());
 
-        unwalkableMapVector={1,9,9,9,9,9,9,9,1};
-        unwalkableMapMsn.setX(0);
-        unwalkableMapMsn.setY(0);
-        unwalkableMapMsn.setMap(new Map(3,3,unwalkableMapVector));
+        unwalkableMapVector={1,9,9,
+                             9,9,9,
+                             9,9,1};
+        unwalkableMap=new Map(3,3,unwalkableMapVector);
+
 
         unusualMapVector={2,2,2,3,2,2,2,2,1,1,
                           2,2,2,3,2,2,2,2,1,1,
@@ -29,19 +30,18 @@ protected:
                           2,4,3,2,2,4,4,3,2,2,
                           2,4,3,1,1,2,2,2,1,1,
                           2,2,2,1,1,2,2,2,1,1};
-        unusualMapMsn.setX(0);
-        unusualMapMsn.setY(0);
-        unusualMapMsn.setMap(new Map(10,11,unusualMapVector));
+        unusualMap = new Map(10,11,unusualMapVector);
+
 
     }
 
     MapSearchNode msn;
 
     std::vector<int> unwalkableMapVector;
-    MapSearchNode unwalkableMapMsn;
+    Map* unwalkableMap;
 
     std::vector<int> unusualMapVector;
-    MapSearchNode unusualMapMsn;
+    Map* unusualMap;
 
 
 };
@@ -53,7 +53,7 @@ TEST_F(MapSearchNodeTest, GoalDistanceEstimateTest) {
     ASSERT_EQ(10.0,msn.GoalDistanceEstimate(*nodeGoal));
     nodeGoal->setY(10);
     ASSERT_EQ(20,msn.GoalDistanceEstimate(*nodeGoal));
-    nodeGoal->setMap(new Map(10,11,unusualMapVector));
+    nodeGoal->setMap(new Map(10,10,unusualMapVector));
     ASSERT_EQ(20,msn.GoalDistanceEstimate(*nodeGoal));
 
 }
@@ -81,7 +81,7 @@ TEST_F(MapSearchNodeTest, AstarSearchSearchStepTest1){
 
 }
 
-TEST_F(MapSearchNodeTest, AstarSearchSearchStepTest2){
+TEST_F(MapSearchNodeTest, AstarSearchSearchStepTest2){ //test con percorso chiuso
     AStarSearch<MapSearchNode> aStarSearch;
     unsigned int searchState;
     Map* map= new Map(3,3,unwalkableMapVector);
@@ -94,7 +94,7 @@ TEST_F(MapSearchNodeTest, AstarSearchSearchStepTest2){
     MapSearchNode nodeEnd;
     nodeEnd.setX(2);
     nodeEnd.setY(2);
-    nodeStart.setMap(map);
+    nodeEnd.setMap(map);
 
     aStarSearch.SetStartAndGoalStates(nodeStart, nodeEnd);
 
@@ -108,20 +108,19 @@ TEST_F(MapSearchNodeTest, AstarSearchSearchStepTest2){
 
 }
 
-TEST_F(MapSearchNodeTest, AstarSearchSearchStepTest3){
+TEST_F(MapSearchNodeTest, AstarSearchSearchStepTest3){ //test con mappa piu complessa
     AStarSearch<MapSearchNode> aStarSearch;
     unsigned int searchState;
-    Map* map= new Map(10,11,unusualMapVector);
 
     MapSearchNode nodeStart;
     nodeStart.setX(0);
     nodeStart.setY(0);
-    nodeStart.setMap(map);
+    nodeStart.setMap(unusualMap);
 
     MapSearchNode nodeEnd;
     nodeEnd.setX(6);
-    nodeEnd.setY(8);
-    nodeStart.setMap(map);
+    nodeEnd.setY(7);
+    nodeEnd.setMap(unusualMap);
 
     aStarSearch.SetStartAndGoalStates(nodeStart, nodeEnd);
 
@@ -132,8 +131,16 @@ TEST_F(MapSearchNodeTest, AstarSearchSearchStepTest3){
     while( searchState == AStarSearch<MapSearchNode>::SEARCH_STATE_SEARCHING );
     ASSERT_EQ(AStarSearch<MapSearchNode>::SEARCH_STATE_SUCCEEDED,searchState);
 
+    //provo a uscire dalla mappa: mi aspetto che la ricerca fallisca
+    nodeEnd.setX(15);
+    nodeEnd.setY(15);
+    aStarSearch.SetStartAndGoalStates(nodeStart, nodeEnd);
+    do
+    {
+        searchState = aStarSearch.SearchStep();
+    }
+    while( searchState == AStarSearch<MapSearchNode>::SEARCH_STATE_SEARCHING );
+    ASSERT_EQ(AStarSearch<MapSearchNode>::SEARCH_STATE_FAILED,searchState);
 }
 
 
-//inserire test con mappa piu complessa
-//inserire test con percorso chiuso

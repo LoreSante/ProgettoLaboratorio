@@ -13,7 +13,7 @@
 class MapSearchNode
 {
 public:
-//TODO CANCELLARE COSTRUTTOR SUPERFLUI
+
 
     MapSearchNode() {
         x = 0;
